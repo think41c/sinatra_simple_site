@@ -3,6 +3,7 @@ require 'slim'
 require 'sinatra'
 require 'sinatra/fix_951'
 require 'sinatra/reloader' if development? 
+require './song'
 
 # set :public, 'public'
 # set :views, 'views'
