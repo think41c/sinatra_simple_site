@@ -7,7 +7,7 @@ end
 
 
 __END__
-@@home
+@@layout
 <!doctype html>
 <% dumb = "shit" %> 
 <% title="Songs By Sinatra" %>
@@ -34,3 +34,6 @@ __END__
  </section>
 </body>
 </html>
+
+@@home
+<p> Welcome to sinatra. This isn't part of the layout. </p>
