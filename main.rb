@@ -1,25 +1,30 @@
+require 'sass'
+require 'slim'
 require 'sinatra'
+require 'sinatra/fix_951'
 require 'sinatra/reloader' if development? 
 
 # set :public, 'public'
 # set :views, 'views'
 
+get ('/styles.css'){ scss :styles }
+
 get '/' do 
   @title = "home folder instance"
-  erb :home
+  slim :home
 end
 
 get '/about' do
   @title = "All about website (using instance)"
-  erb :about
+  slim :about
 end
 
 get '/contact' do
-  erb :contact, :layout => :special
+  slim :contact, :layout => :special
 end
 
 not_found do
- erb :not_found
+ slim :not_found
 end
 
 get '/fake-error' do
@@ -27,7 +32,7 @@ get '/fake-error' do
  "There’s nothing wrong, really :P"
 end 
 
-# __END__
+__END__
 
-# @@special 
-# <p> Showing you the special layout!! </p>
+@@special 
+<p> Showing you the special layout!! </p>
