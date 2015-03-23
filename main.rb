@@ -1,52 +1,33 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if development? 
+
+# set :public, 'public'
+# set :views, 'views'
 
 get '/' do 
+  @title = "home folder instance"
   erb :home
 end
 
 get '/about' do
+  @title = "All about website (using instance)"
   erb :about
 end
 
 get '/contact' do
-  erb :contact
+  erb :contact, :layout => :special
 end
 
+not_found do
+ erb :not_found
+end
 
-__END__
-@@layout
-<!doctype html>
-<% foo = "baz" %> 
-<% title="Songs By Sinatra" %>
-<html lang="en">
-<head>
-  <title><%= title %></title>
- <meta charset="utf-8">
-</head>
-<body>
- <header>
- <h1><%= title %></h1>
- <h2><%= foo   %></h2>
- <nav>
- <ul>
- <li><a href="/" title="Home">Home</a></li>
- <li><a href="/about" title="About">About</a></li>
- <li><a href="/contact" title="Contact">Contact</a></li>
- </ul>
- </nav>
- </header>
- <section>
- <%= yield %>
- </section>
-</body>
-</html>
+get '/fake-error' do
+ status 404
+ "There’s nothing wrong, really :P"
+end 
 
-@@home
-<p> Welcome to sinatra. This isn't part of the layout. </p>
+# __END__
 
-@@about 
-<p> About sinatra </p>
-
-@@contact 
-<p> Sent an email </p>
+# @@special 
+# <p> Showing you the special layout!! </p>
